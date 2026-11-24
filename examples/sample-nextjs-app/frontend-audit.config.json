@@ -1,0 +1,5 @@
+{
+  "url": "http://localhost:3100",
+  "framework": "next",
+  "out": "audit-report"
+}

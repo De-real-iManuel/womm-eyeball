@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clean page</title>
+<link rel="icon" href="data:,">
+<style>
+  body { font-family: sans-serif; margin: 0; color: #1a1a1a; background: #fff; }
+  main, header { padding: 16px; }
+  button, input, select { min-height: 48px; font-size: 16px; }
+  a.nav { display: inline-block; min-height: 48px; min-width: 48px; line-height: 48px; color: #0b4a8f; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { padding: 16px; border: 1px solid #888; border-radius: 8px; }
+</style>
+</head>
+<body>
+<header><nav aria-label="Main"><a class="nav" href="/index.html">Seeded site</a></nav></header>
+<main>
+  <h1>Clean page</h1>
+  <p>This page is built correctly. The audit must report nothing here.</p>
+
+  <button type="button" id="toggle" aria-expanded="false" aria-controls="more">Show details</button>
+  <div id="more" hidden>More details.</div>
+
+  <div class="cards">
+    <div class="card">One</div>
+    <div class="card">Two</div>
+    <div class="card">Three</div>
+  </div>
+
+  <form id="good-form" novalidate>
+    <label for="good-email">Email</label>
+    <input id="good-email" name="email" type="email" required aria-describedby="good-msg">
+    <button type="submit" id="good-submit">Subscribe</button>
+    <p id="good-msg" role="status"></p>
+  </form>
+</main>
+<script>
+  var toggle = document.getElementById("toggle");
+  toggle.addEventListener("click", function () {
+    var open = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!open));
+    document.getElementById("more").hidden = open;
+  });
+  var form = document.getElementById("good-form");
+  var msg = document.getElementById("good-msg");
+  var email = document.getElementById("good-email");
+  var busy = false;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (busy) return;
+    if (!email.value) { email.setAttribute("aria-invalid", "true"); msg.textContent = "Enter your email."; return; }
+    email.removeAttribute("aria-invalid");
+    busy = true;
+    document.getElementById("good-submit").disabled = true;
+    msg.textContent = "Sending...";
+    fetch("/api/subscribe", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email: email.value }) })
+      .then(function (r) { msg.textContent = r.ok ? "Thanks, you are on the list." : "Something went wrong. Try again."; })
+      .catch(function () { msg.textContent = "Network error. Try again."; })
+      .finally(function () { busy = false; document.getElementById("good-submit").disabled = false; });
+  });
+</script>
+</body>
+</html>

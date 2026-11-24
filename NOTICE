@@ -1,0 +1,6 @@
+frontend-audit-cli
+Copyright 2026 De real iManuel
+
+This product uses, as dependencies installed from npm (not bundled in this repository):
+- Playwright (Apache-2.0), https://playwright.dev
+- axe-core via @axe-core/playwright (MPL-2.0), https://github.com/dequelabs/axe-core

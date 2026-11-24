@@ -1,0 +1,29 @@
+# dependencies and build output (also matches nested apps, e.g. examples/*/node_modules and .next)
+node_modules/
+.next/
+out/
+dist/
+build/
+
+# audit output
+frontend-audit-report/
+eyeball-report/
+audit-report/
+/reports/
+/screenshots/
+*.png
+!docs/*.png
+
+# the example's recorded run is kept on purpose, as evidence for the README
+!examples/sample-nextjs-app/audit-report/
+!examples/sample-nextjs-app/audit-report/**
+!examples/sample-nextjs-app/audit-report/screenshots/
+!examples/sample-nextjs-app/audit-report/screenshots/*.png
+
+# logs, secrets, OS files
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db

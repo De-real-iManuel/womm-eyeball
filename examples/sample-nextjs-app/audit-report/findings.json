@@ -1,0 +1,441 @@
+{
+  "tool": "frontend-audit-cli",
+  "version": "0.1.0",
+  "framework": "next",
+  "strategy": "files",
+  "baseUrl": "http://localhost:3100",
+  "widths": [
+    390,
+    820,
+    1440
+  ],
+  "routes": [
+    "/",
+    "/about",
+    "/contact",
+    "/newsletter",
+    "/pricing",
+    "/reports"
+  ],
+  "shots": {
+    "/": {
+      "390": "screenshots/home-390.png",
+      "820": "screenshots/home-820.png",
+      "1440": "screenshots/home-1440.png"
+    },
+    "/about": {
+      "390": "screenshots/about-390.png",
+      "820": "screenshots/about-820.png",
+      "1440": "screenshots/about-1440.png"
+    },
+    "/contact": {
+      "390": "screenshots/contact-390.png",
+      "820": "screenshots/contact-820.png",
+      "1440": "screenshots/contact-1440.png"
+    },
+    "/newsletter": {
+      "390": "screenshots/newsletter-390.png",
+      "820": "screenshots/newsletter-820.png",
+      "1440": "screenshots/newsletter-1440.png"
+    },
+    "/pricing": {
+      "390": "screenshots/pricing-390.png",
+      "820": "screenshots/pricing-820.png",
+      "1440": "screenshots/pricing-1440.png"
+    },
+    "/reports": {
+      "390": "screenshots/reports-390.png",
+      "820": "screenshots/reports-820.png",
+      "1440": "screenshots/reports-1440.png"
+    }
+  },
+  "notes": [],
+  "functional": true,
+  "findings": [
+    {
+      "id": "F-001",
+      "category": "a11y",
+      "route": "/",
+      "width": 390,
+      "rule": "axe:color-contrast",
+      "severity": "High",
+      "message": "Elements must meet minimum color contrast ratio thresholds",
+      "measured": "1 node(s). .ghost: Element has insufficient color contrast of 2.32 (foreground color: #aaaaaa, background color: #ffffff, font size: 12.0pt",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+      "screenshot": "screenshots/home-390.png"
+    },
+    {
+      "id": "F-002",
+      "category": "a11y",
+      "route": "/",
+      "width": 1440,
+      "rule": "axe:color-contrast",
+      "severity": "High",
+      "message": "Elements must meet minimum color contrast ratio thresholds",
+      "measured": "1 node(s). .ghost: Element has insufficient color contrast of 2.32 (foreground color: #aaaaaa, background color: #ffffff, font size: 12.0pt",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+      "screenshot": "screenshots/home-1440.png"
+    },
+    {
+      "id": "F-003",
+      "category": "functional",
+      "route": "/",
+      "rule": "broken-link",
+      "severity": "High",
+      "message": "Link \"Careers\" leads to an error page",
+      "measured": "GET /careers -> HTTP 404"
+    },
+    {
+      "id": "F-004",
+      "category": "a11y",
+      "route": "/about",
+      "width": 390,
+      "rule": "axe:document-title",
+      "severity": "High",
+      "message": "Documents must have <title> element to aid in navigation",
+      "measured": "1 node(s). html: Document does not have a non-empty <title> element",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/document-title?application=playwright",
+      "screenshot": "screenshots/about-390.png"
+    },
+    {
+      "id": "F-005",
+      "category": "a11y",
+      "route": "/about",
+      "width": 1440,
+      "rule": "axe:document-title",
+      "severity": "High",
+      "message": "Documents must have <title> element to aid in navigation",
+      "measured": "1 node(s). html: Document does not have a non-empty <title> element",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/document-title?application=playwright",
+      "screenshot": "screenshots/about-1440.png"
+    },
+    {
+      "id": "F-006",
+      "category": "functional",
+      "route": "/about",
+      "rule": "broken-link",
+      "severity": "High",
+      "message": "Link \"Careers\" leads to an error page",
+      "measured": "GET /careers -> HTTP 404"
+    },
+    {
+      "id": "F-007",
+      "category": "functional",
+      "route": "/contact",
+      "rule": "broken-link",
+      "severity": "High",
+      "message": "Link \"Careers\" leads to an error page",
+      "measured": "GET /careers -> HTTP 404"
+    },
+    {
+      "id": "F-008",
+      "category": "functional",
+      "route": "/contact",
+      "rule": "duplicate-submit",
+      "severity": "High",
+      "message": "form #1: a double click sends the same request 2 times",
+      "measured": "2 x POST /api/contact within 0ms",
+      "stubbed": true,
+      "screenshot": "screenshots/contact-form1-double.png"
+    },
+    {
+      "id": "F-009",
+      "category": "functional",
+      "route": "/newsletter",
+      "rule": "broken-link",
+      "severity": "High",
+      "message": "Link \"Careers\" leads to an error page",
+      "measured": "GET /careers -> HTTP 404"
+    },
+    {
+      "id": "F-010",
+      "category": "functional",
+      "route": "/newsletter",
+      "rule": "duplicate-submit",
+      "severity": "High",
+      "message": "form #1: a double click sends the same request 2 times",
+      "measured": "2 x POST /api/subscribe within 0ms",
+      "stubbed": true,
+      "screenshot": "screenshots/newsletter-form1-double.png"
+    },
+    {
+      "id": "F-011",
+      "category": "visual",
+      "route": "/pricing",
+      "width": 390,
+      "rule": "horizontal-overflow",
+      "severity": "High",
+      "message": "Page scrolls sideways",
+      "measured": "scrollWidth 924px > viewport 390px; widest: a \"Newsletter\", a \"About\", a \"Careers\"",
+      "screenshot": "screenshots/pricing-390.png"
+    },
+    {
+      "id": "F-012",
+      "category": "functional",
+      "route": "/pricing",
+      "rule": "broken-link",
+      "severity": "High",
+      "message": "Link \"Careers\" leads to an error page",
+      "measured": "GET /careers -> HTTP 404"
+    },
+    {
+      "id": "F-013",
+      "category": "visual",
+      "route": "/reports",
+      "width": 390,
+      "rule": "blank-page",
+      "severity": "High",
+      "message": "Page renders nothing visible",
+      "measured": "no text and no visible media or controls",
+      "screenshot": "screenshots/reports-390.png"
+    },
+    {
+      "id": "F-014",
+      "category": "visual",
+      "route": "/reports",
+      "width": 820,
+      "rule": "blank-page",
+      "severity": "High",
+      "message": "Page renders nothing visible",
+      "measured": "no text and no visible media or controls",
+      "screenshot": "screenshots/reports-820.png"
+    },
+    {
+      "id": "F-015",
+      "category": "visual",
+      "route": "/reports",
+      "width": 1440,
+      "rule": "blank-page",
+      "severity": "High",
+      "message": "Page renders nothing visible",
+      "measured": "no text and no visible media or controls",
+      "screenshot": "screenshots/reports-1440.png"
+    },
+    {
+      "id": "F-016",
+      "category": "functional",
+      "route": "/",
+      "rule": "dead-control",
+      "severity": "Medium",
+      "message": "Clicking button \"Learn more\" does nothing",
+      "measured": "no navigation, DOM change, request, popup or console output within 450ms"
+    },
+    {
+      "id": "F-017",
+      "category": "functional",
+      "route": "/",
+      "rule": "dead-control",
+      "severity": "Medium",
+      "message": "Clicking button \"Get started\" does nothing",
+      "measured": "no navigation, DOM change, request, popup or console output within 450ms"
+    },
+    {
+      "id": "F-018",
+      "category": "functional",
+      "route": "/about",
+      "rule": "dead-anchor",
+      "severity": "Medium",
+      "message": "Link \"our team\" points to #team, which does not exist",
+      "measured": "href=\"#team\""
+    },
+    {
+      "id": "F-019",
+      "category": "functional",
+      "route": "/contact",
+      "rule": "no-validation-feedback",
+      "severity": "Medium",
+      "message": "form #1: submitting it empty shows no message",
+      "measured": "no :invalid fields, no aria-invalid, no alert text, no text change",
+      "stubbed": true
+    },
+    {
+      "id": "F-020",
+      "category": "functional",
+      "route": "/contact",
+      "rule": "no-submit-feedback",
+      "severity": "Medium",
+      "message": "form #1: nothing visible changes after a successful submit",
+      "measured": "page text identical before, 150ms and ~1.5s after the (stubbed) 200 response",
+      "stubbed": true
+    },
+    {
+      "id": "F-021",
+      "category": "functional",
+      "route": "/contact",
+      "rule": "no-error-feedback",
+      "severity": "Medium",
+      "message": "form #1: nothing visible changes when the server answers 500",
+      "measured": "page text identical before and after the (stubbed) 500 response",
+      "stubbed": true
+    },
+    {
+      "id": "F-022",
+      "category": "visual",
+      "route": "/pricing",
+      "width": 820,
+      "rule": "horizontal-overflow",
+      "severity": "Medium",
+      "message": "Page scrolls sideways",
+      "measured": "scrollWidth 924px > viewport 820px; widest: table.plans \"PlanSeatsSupportPriceFre\", thead \"PlanSeatsSupportPrice\", tr \"PlanSeatsSupportPrice\"",
+      "screenshot": "screenshots/pricing-820.png"
+    },
+    {
+      "id": "F-023",
+      "category": "a11y",
+      "route": "/reports",
+      "width": 390,
+      "rule": "axe:landmark-one-main",
+      "severity": "Medium",
+      "message": "Document should have one main landmark",
+      "measured": "1 node(s). html: ",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-one-main?application=playwright",
+      "screenshot": "screenshots/reports-390.png"
+    },
+    {
+      "id": "F-024",
+      "category": "a11y",
+      "route": "/reports",
+      "width": 390,
+      "rule": "axe:page-has-heading-one",
+      "severity": "Medium",
+      "message": "Page should contain a level-one heading",
+      "measured": "1 node(s). html: ",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/page-has-heading-one?application=playwright",
+      "screenshot": "screenshots/reports-390.png"
+    },
+    {
+      "id": "F-025",
+      "category": "a11y",
+      "route": "/reports",
+      "width": 1440,
+      "rule": "axe:landmark-one-main",
+      "severity": "Medium",
+      "message": "Document should have one main landmark",
+      "measured": "1 node(s). html: ",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-one-main?application=playwright",
+      "screenshot": "screenshots/reports-1440.png"
+    },
+    {
+      "id": "F-026",
+      "category": "a11y",
+      "route": "/reports",
+      "width": 1440,
+      "rule": "axe:page-has-heading-one",
+      "severity": "Medium",
+      "message": "Page should contain a level-one heading",
+      "measured": "1 node(s). html: ",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/page-has-heading-one?application=playwright",
+      "screenshot": "screenshots/reports-1440.png"
+    },
+    {
+      "id": "F-027",
+      "category": "visual",
+      "route": "/",
+      "width": 390,
+      "rule": "small-tap-target",
+      "severity": "Low",
+      "message": "8 control(s) under 44x44 CSS px",
+      "measured": "a \"Home\" 43x21; a \"Pricing\" 48x21; a \"Contact\" 55x21; a \"Newsletter\" 76x21",
+      "screenshot": "screenshots/home-390.png"
+    },
+    {
+      "id": "F-028",
+      "category": "visual",
+      "route": "/",
+      "width": 820,
+      "rule": "small-tap-target",
+      "severity": "Low",
+      "message": "8 control(s) under 44x44 CSS px",
+      "measured": "a \"Home\" 43x21; a \"Pricing\" 48x21; a \"Contact\" 55x21; a \"Newsletter\" 76x21",
+      "screenshot": "screenshots/home-820.png"
+    },
+    {
+      "id": "F-029",
+      "category": "visual",
+      "route": "/about",
+      "width": 390,
+      "rule": "small-tap-target",
+      "severity": "Low",
+      "message": "6 control(s) under 44x44 CSS px",
+      "measured": "a \"Home\" 43x21; a \"Pricing\" 48x21; a \"Contact\" 55x21; a \"Newsletter\" 76x21",
+      "screenshot": "screenshots/about-390.png"
+    },
+    {
+      "id": "F-030",
+      "category": "visual",
+      "route": "/about",
+      "width": 820,
+      "rule": "small-tap-target",
+      "severity": "Low",
+      "message": "6 control(s) under 44x44 CSS px",
+      "measured": "a \"Home\" 43x21; a \"Pricing\" 48x21; a \"Contact\" 55x21; a \"Newsletter\" 76x21",
+      "screenshot": "screenshots/about-820.png"
+    },
+    {
+      "id": "F-031",
+      "category": "visual",
+      "route": "/contact",
+      "width": 390,
+      "rule": "small-tap-target",
+      "severity": "Low",
+      "message": "8 control(s) under 44x44 CSS px",
+      "measured": "a \"Home\" 43x21; a \"Pricing\" 48x21; a \"Contact\" 55x21; a \"Newsletter\" 76x21",
+      "screenshot": "screenshots/contact-390.png"
+    },
+    {
+      "id": "F-032",
+      "category": "visual",
+      "route": "/contact",
+      "width": 820,
+      "rule": "small-tap-target",
+      "severity": "Low",
+      "message": "8 control(s) under 44x44 CSS px",
+      "measured": "a \"Home\" 43x21; a \"Pricing\" 48x21; a \"Contact\" 55x21; a \"Newsletter\" 76x21",
+      "screenshot": "screenshots/contact-820.png"
+    },
+    {
+      "id": "F-033",
+      "category": "visual",
+      "route": "/newsletter",
+      "width": 390,
+      "rule": "small-tap-target",
+      "severity": "Low",
+      "message": "8 control(s) under 44x44 CSS px",
+      "measured": "a \"Home\" 43x21; a \"Pricing\" 48x21; a \"Contact\" 55x21; a \"Newsletter\" 76x21",
+      "screenshot": "screenshots/newsletter-390.png"
+    },
+    {
+      "id": "F-034",
+      "category": "visual",
+      "route": "/newsletter",
+      "width": 820,
+      "rule": "small-tap-target",
+      "severity": "Low",
+      "message": "8 control(s) under 44x44 CSS px",
+      "measured": "a \"Home\" 43x21; a \"Pricing\" 48x21; a \"Contact\" 55x21; a \"Newsletter\" 76x21",
+      "screenshot": "screenshots/newsletter-820.png"
+    },
+    {
+      "id": "F-035",
+      "category": "visual",
+      "route": "/pricing",
+      "width": 390,
+      "rule": "small-tap-target",
+      "severity": "Low",
+      "message": "6 control(s) under 44x44 CSS px",
+      "measured": "a \"Home\" 43x21; a \"Pricing\" 48x21; a \"Contact\" 55x21; a \"Newsletter\" 76x21",
+      "screenshot": "screenshots/pricing-390.png"
+    },
+    {
+      "id": "F-036",
+      "category": "visual",
+      "route": "/pricing",
+      "width": 820,
+      "rule": "small-tap-target",
+      "severity": "Low",
+      "message": "6 control(s) under 44x44 CSS px",
+      "measured": "a \"Home\" 43x21; a \"Pricing\" 48x21; a \"Contact\" 55x21; a \"Newsletter\" 76x21",
+      "screenshot": "screenshots/pricing-820.png"
+    }
+  ]
+}
