@@ -1,8 +1,12 @@
-# eyeball
+# Eyeball
 
-Part of **WOMM** ("Works On My Machine"), a growing set of developer tools. Eyeball is the first one.
+**See what your frontend actually does.**
 
-> Package name: `@imanueldev/eyeball`. Command: `eyeball`. Version 0.1.0, early.
+Eyeball is an open-source, framework-aware frontend QA agent maintained by [De real iManuel](https://github.com/De-real-iManuel).
+
+> **npm package:** `@imanueldev/eyeball` · **CLI:** `eyeballs` · **Also available:** `eyeball` · **Status:** early development (v0.1.0)
+
+It inspects running web applications in a real browser, exercises routes and interactive elements, captures visual evidence, and reports measurable visual, accessibility, and functional issues. It is designed to help developers catch problems before shipping—not to replace human review.
 
 Eyeball is an autonomous, framework-aware frontend QA agent that inspects rendered applications, tests interactions, captures visual evidence, identifies UI/UX, accessibility and functional issues, and verifies fixes.
 
@@ -54,7 +58,20 @@ Severity: **Critical** (unusable), **High** (a user cannot finish a task, or a s
 
 ## Install
 
-From npm: `npx @imanueldev/eyeball --help`, or install globally with `npm i -g @imanueldev/eyeball`. From a clone:
+Run without a global install:
+
+```bash
+npx --yes --package @imanueldev/eyeball --call "eyeballs --help"
+```
+
+Or install globally:
+
+```bash
+npm install --global @imanueldev/eyeball
+eyeballs --help
+```
+
+The legacy `eyeball` executable is also provided. From a source clone:
 
 ```bash
 npm install
@@ -64,7 +81,7 @@ node bin/eyeball.js --help
 
 Chromium is not downloaded by the install: run `npx playwright install chromium` once.
 
-Why a scoped name: the unscoped npm name `eyeball` is taken by an unrelated package. A `womm` launcher (`npx womm eyeball`) is on the [roadmap](#roadmap). The old path `bin/frontend-audit.js` still works.
+The npm package uses your personal npm scope because the unscoped package name is already taken. The plural `eyeballs` command is the recommended CLI; `eyeball` remains available as a compatibility alias. The old path `bin/frontend-audit.js` still works.
 
 ## Run an inspection
 
@@ -73,17 +90,17 @@ Start your app the way you normally do, then point eyeball at it:
 ```bash
 # Next.js
 npm run dev
-eyeball --url http://localhost:3000 --root .
+eyeballs --url http://localhost:3000 --root .
 
 # Vite or anything without file-based routes (links are followed from "/")
 npm run dev
-eyeball --url http://localhost:5173
+eyeballs --url http://localhost:5173
 
 # Plain HTML folder: no server needed, one is started on 127.0.0.1
-eyeball --root ./my-site
+eyeballs --root ./my-site
 ```
 
-Or write an `eyeball.config.json` in the project root and run `eyeball` with no flags (see [Config file](#config-file)).
+Or write an `eyeball.config.json` in the project root and run `eyeballs` with no flags (see [Config file](#config-file)).
 
 Output goes to `./frontend-audit-report/` (the default folder name has not been renamed yet): `report.md`, `findings.json`, `screenshots/`.
 
@@ -102,7 +119,7 @@ Output goes to `./frontend-audit-report/` (the default folder name has not been 
 | `--no-axe` | Skip axe-core |
 | `--fail-on High` | Exit 1 if any finding is at that level or worse (for CI) |
 
-Other commands: `eyeball detect` prints the framework; `eyeball routes` prints routes found from files.
+Other commands: `eyeballs detect` prints the framework; `eyeballs routes` prints routes found from files.
 
 Exit codes: 0 ok, 1 findings at or above `--fail-on`, 2 usage or runtime error.
 
@@ -245,7 +262,7 @@ Other limits:
 
 Nothing below is built.
 
-- TODO: a `womm` launcher package so `npx womm eyeball ...` works next to `npx @imanueldev/eyeball`. Planned, not started.
+- Improve the first-run experience and make CLI setup smoother across Windows, macOS, and Linux.
 - A clipped-content check and a correct overflow culprit (the two known gaps).
 - Authenticated audits through the `auth` config field.
 - Real-world testing of the SvelteKit, Nuxt and Angular paths; more adapters.
