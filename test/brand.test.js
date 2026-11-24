@@ -18,6 +18,10 @@ test("package exposes plural and singular CLI commands", () => {
     eyeballs: "bin/eyeball.js",
     eyeball: "bin/eyeball.js",
   });
+  const lock = JSON.parse(fs.readFileSync(path.join(here, "..", "package-lock.json"), "utf8"));
+  assert.equal(lock.name, pkg.name);
+  assert.equal(lock.version, pkg.version);
+  assert.deepEqual(lock.packages[""].bin, pkg.bin);
 });
 
 test("banner is plain ASCII, at most 60 columns wide, and names the tool", () => {
