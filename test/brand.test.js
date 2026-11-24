@@ -24,12 +24,12 @@ test("package exposes plural and singular CLI commands", () => {
   assert.deepEqual(lock.packages[""].bin, pkg.bin);
 });
 
-test("banner is plain ASCII, at most 60 columns wide, and names the tool", () => {
+test("banner uses the generated eye artwork, stays within 60 columns, and names the tool", () => {
   assert.ok(banner().split("\n").every((l) => l.length <= 60), "no line wider than 60 columns");
   assert.match(banner(), /E Y E B A L L/);
   assert.match(banner(), /FRONTEND QUALITY ASSURANCE/);
-  assert.match(banner(), /\\(o\\)/);
-  assert.match(banner(), /------------/);
+  assert.match(banner(), /Inspect what actually renders\\./);
+  assert.match(banner(), /[@%#*]{3,}/, "eye artwork retains shaded detail");
   assert.doesNotMatch(banner(), /WOMM/);
   assert.ok([...banner()].every((c) => c === "\n" || (c >= " " && c <= "~")), "no color codes, no non-ASCII");
 });
