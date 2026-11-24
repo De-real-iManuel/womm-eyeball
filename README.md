@@ -187,6 +187,17 @@ Result on the 11 planted bugs:
 
 Count: 8 caught correctly, 1 caught with misleading evidence, 1 caught only as a symptom, 1 missed. Eyeball also found 2 real bugs the author had not planted (a second dead button, and a second form that double-submits). It also reports 10 low-severity "small tap target" findings on the header links, which are real by the 44 px guideline but noisy.
 
+Real screenshots from that run (390 px wide, taken by eyeball):
+
+| Home: low-contrast "Learn more" button (caught). The menu is also cut off at the right edge, which eyeball missed. | Pricing: the 900 px table makes the page scroll sideways (caught, wrong element named) |
+|---|---|
+| ![Home page at 390 px: pale grey Learn more button, nav cut off after News](examples/sample-nextjs-app/audit-report/screenshots/home-390.png) | ![Pricing page at 390 px: table runs past the right edge](examples/sample-nextjs-app/audit-report/screenshots/pricing-390.png) |
+
+| Reports: a blank page (caught as `blank-page`) | Newsletter: after a double click on Subscribe. Eyeball counted 2 POSTs to `/api/subscribe` (caught); the page itself shows only the success message |
+|---|---|
+| ![Reports page at 390 px: empty white page](examples/sample-nextjs-app/audit-report/screenshots/reports-390.png) | ![Newsletter page at 1440 px after a double click: Thanks, you are subscribed](examples/sample-nextjs-app/audit-report/screenshots/newsletter-form1-double.png) |
+
+All 20 screenshots (3 widths per route, plus two double-click shots) are in [`audit-report/screenshots/`](examples/sample-nextjs-app/audit-report/screenshots), about 270 KB in total.
 The raw output of that run is in [`examples/sample-nextjs-app/audit-report/`](examples/sample-nextjs-app/audit-report). It was produced before the security fixes described in `SECURITY-REVIEW.md`. The example is in the repository only; it is not part of the npm package. To repeat it: `cd examples/sample-nextjs-app && npm install && npm run dev`, then in another terminal `node ../../bin/eyeball.js --root .`.
 
 ## Safety
