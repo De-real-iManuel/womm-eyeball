@@ -1,11 +1,12 @@
 {
   "name": "@imanueldev/eyeball",
   "version": "0.1.0",
-  "description": "an autonomous, framework-aware frontend QA agent that inspects rendered applications, tests interactions, captures visual evidence, identifies UI/UX, accessibility and functional issues, and verifies fixes.",
+  "description": "An open-source, framework-aware frontend QA agent that inspects rendered applications, tests interactions, captures visual evidence, and reports visual, accessibility, and functional issues.",
   "license": "Apache-2.0",
   "author": "De real iManuel",
   "type": "module",
   "bin": {
+    "eyeballs": "bin/eyeball.js",
     "eyeball": "bin/eyeball.js"
   },
   "files": [
@@ -32,6 +33,23 @@
   "dependencies": {
     "@axe-core/playwright": "4.14.0",
     "playwright": "1.65.1"
+  },
+  "keywords": [
+    "frontend",
+    "quality-assurance",
+    "visual-testing",
+    "accessibility",
+    "playwright",
+    "cli",
+    "testing",
+    "web-development"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/De-real-iManuel/womm-eyeball.git"
+  },
+  "homepage": "https://github.com/De-real-iManuel/womm-eyeball#readme",
+  "bugs": {
+    "url": "https://github.com/De-real-iManuel/womm-eyeball/issues"
   }
 }
-
