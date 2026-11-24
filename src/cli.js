@@ -8,12 +8,12 @@ import { runAudit } from "./run.js";
 import { loadConfig, toViewports } from "./config.js";
 import { banner, showBanner } from "./banner.js";
 
-const HELP = `eyeball: audit a running frontend in a real browser
+const HELP = `eyeballs: audit a running frontend in a real browser
 
 Usage:
-  eyeball [run] [options]     audit routes, write report.md + findings.json + screenshots
-  eyeball detect [--root .]   print the detected framework
-  eyeball routes [--root .]   print the routes found from project files
+  eyeballs [run] [options]     audit routes, write report.md + findings.json + screenshots
+  eyeballs detect [--root .]   print the detected framework
+  eyeballs routes [--root .]   print the routes found from project files
 
 Options:
   --config <file>      config file (default: eyeball.config.json or frontend-audit.config.json in --root, if present)
