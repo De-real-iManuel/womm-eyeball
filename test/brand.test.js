@@ -28,6 +28,8 @@ test("banner is plain ASCII, at most 60 columns wide, and names the tool", () =>
   assert.ok(banner().split("\n").every((l) => l.length <= 60), "no line wider than 60 columns");
   assert.match(banner(), /E Y E B A L L/);
   assert.match(banner(), /FRONTEND QUALITY ASSURANCE/);
+  assert.match(banner(), /\\(o\\)/);
+  assert.match(banner(), /------------/);
   assert.doesNotMatch(banner(), /WOMM/);
   assert.ok([...banner()].every((c) => c === "\n" || (c >= " " && c <= "~")), "no color codes, no non-ASCII");
 });
