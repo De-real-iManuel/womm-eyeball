@@ -6,11 +6,9 @@ Eyeball is an open-source, framework-aware frontend QA agent maintained by [De r
 
 > **npm package:** `@imanueldev/eyeball` · **CLI:** `eyeballs` · **Also available:** `eyeball` · **Status:** early development (v0.1.0)
 
-It inspects running web applications in a real browser, exercises routes and interactive elements, captures visual evidence, and reports measurable visual, accessibility, and functional issues. It is designed to help developers catch problems before shipping—not to replace human review.
+Eyeball opens your running frontend in headless Chromium, discovers and inspects routes, captures screenshots at several screen widths, exercises interactive elements, and reports measurable visual, accessibility, and functional issues. Findings include evidence such as dimensions, request counts, HTTP status codes, and screenshots.
 
-Eyeball is an autonomous, framework-aware frontend QA agent that inspects rendered applications, tests interactions, captures visual evidence, identifies UI/UX, accessibility and functional issues, and verifies fixes.
-
-What that means today: eyeball opens your running frontend in a real headless Chromium, takes screenshots at several screen widths, clicks things, fills forms, and reports visual, accessibility and functional problems. Each finding comes with evidence: a measured number, a request count, an HTTP status or a screenshot. The "verifies fixes" part is manual for now: run it again after a fix and compare reports. There is no built-in before/after comparison yet.
+Fix verification is currently a manual rerun: make a change, run Eyeball again, and compare the reports yourself. Built-in before/after comparison is not available yet.
 
 ## The problem
 
