@@ -12,22 +12,27 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const run = (bin, args) => spawnSync(process.execPath, [path.join(here, "..", "bin", bin), ...args], { encoding: "utf8" });
 const pkg = JSON.parse(fs.readFileSync(path.join(here, "..", "package.json"), "utf8"));
 
-test("package exposes the eyeball command", () => {
+test("package exposes plural and singular CLI commands", () => {
   assert.equal(pkg.name, "@imanueldev/eyeball");
-  assert.deepEqual(pkg.bin, { eyeball: "bin/eyeball.js" });
+  assert.deepEqual(pkg.bin, {
+    eyeballs: "bin/eyeball.js",
+    eyeball: "bin/eyeball.js",
+  });
 });
 
 test("banner is plain ASCII, at most 60 columns wide, and names the tool", () => {
   assert.ok(banner().split("\n").every((l) => l.length <= 60), "no line wider than 60 columns");
-  assert.match(banner(), /e y e b a l l/);
-  assert.match(banner(), /WOMM/);
+  assert.match(banner(), /E Y E B A L L/);
+  assert.match(banner(), /FRONTEND QUALITY ASSURANCE/);
+  assert.doesNotMatch(banner(), /WOMM/);
   assert.ok([...banner()].every((c) => c === "\n" || (c >= " " && c <= "~")), "no color codes, no non-ASCII");
 });
 
 test("piped output carries no banner: --version is only the number, --help starts with the usage text", () => {
   assert.equal(run("eyeball.js", ["--version"]).stdout.trim(), pkg.version);
   const help = run("eyeball.js", ["--help"]);
-  assert.match(help.stdout, /^eyeball: audit/);
+  assert.match(help.stdout, /^eyeballs: audit/);
+  assert.match(help.stdout, /Usage:\n  eyeballs \[run\]/);
   assert.equal(help.stderr, "");
 });
 
