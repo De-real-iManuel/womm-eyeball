@@ -4,7 +4,7 @@
 
 Eyeball is an open-source, framework-aware frontend QA agent maintained by [De real iManuel](https://github.com/De-real-iManuel).
 
-> **npm package:** `@imanueldev/eyeball` · **CLI:** `eyeballs` · **Also available:** `eyeball` · **Status:** early development (v0.1.0)
+> **npm package:** `@imanueldev/eyeball` · **CLI:** `eyeballs` · **Also available:** `eyeball` · **Status:** early development (v0.1.1)
 
 Eyeball opens your running frontend in headless Chromium, discovers and inspects routes, captures screenshots at several screen widths, exercises interactive elements, and reports measurable visual, accessibility, and functional issues. Findings include evidence such as dimensions, request counts, HTTP status codes, and screenshots.
 
