@@ -18,6 +18,7 @@ Usage:
 Options:
   --config <file>      config file (default: eyeball.config.json or frontend-audit.config.json in --root, if present)
   --url <url>          running app, e.g. http://localhost:3000 (omit for plain HTML: a local server is started)
+  --cdp <endpoint>     connect to an existing Chromium browser via CDP (also: EYEBALL_CDP_URL)
   --root <dir>         project folder (default .)
   --framework <name>   auto | ${FRAMEWORKS.join(" | ")} (default auto)
   --routes <a,b,c>     audit exactly these routes (skips discovery)
@@ -43,6 +44,7 @@ export async function main(argv) {
     allowPositionals: true,
     options: {
       url: { type: "string" },
+      cdp: { type: "string" },
       config: { type: "string" },
       root: { type: "string" },
       framework: { type: "string" },
@@ -100,6 +102,7 @@ export async function main(argv) {
 
   const result = await runAudit({
     url: values.url ?? cfg.url,
+    cdpUrl: values.cdp ?? process.env.EYEBALL_CDP_URL ?? cfg.cdpUrl,
     root: values.root ?? fromCfg(cfg.root) ?? (loaded ? loaded.dir : "."),
     framework,
     routes: (values.routes ? list(values.routes) : (cfg.routes ?? [])).map(asRoute),
