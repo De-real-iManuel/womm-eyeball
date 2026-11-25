@@ -1,7 +1,7 @@
-﻿// Orchestrator: pick an adapter, discover routes, filter them, hand them to the core, write reports.
+// Orchestrator: pick an adapter, discover routes, filter them, hand them to the core, write reports.
 import fs from "node:fs";
 import path from "node:path";
-import { chromium } from "playwright";
+import { openBrowser } from "./browser-provider.js";
 import { detectFramework, discoverRoutes } from "./adapters/index.js";
 import { startStaticServer } from "./core/server.js";
 import { crawl, filterRoutes } from "./core/routes.js";
@@ -34,8 +34,9 @@ export async function runAudit(opts) {
 
   const out = path.resolve(o.out);
   fs.mkdirSync(path.join(out, "screenshots"), { recursive: true });
-  const browser = await chromium.launch();
+  let browser;
   try {
+    browser = await openBrowser({ cdpUrl: o.cdpUrl, log });
     let discovery = { strategy: "explicit", routes: o.routes, skipped: [] };
     if (!o.routes.length) {
       discovery = discoverRoutes(root, framework);
@@ -54,7 +55,7 @@ export async function runAudit(opts) {
     writeReports(out, result);
     return result;
   } finally {
-    await browser.close();
+    await browser?.close();
     await server?.close();
   }
 }
