@@ -33,7 +33,7 @@ Options:
   -v, --version        print version
   -h, --help           print this help
 
-Flags override the config file. Config keys: url, root, framework, routes, include, exclude, viewports, maxRoutes, out, functional, axe, auth (auth is a placeholder, ignored).
+Flags override the config file. Config keys: url, cdpUrl, root, framework, routes, include, exclude, viewports, maxRoutes, out, functional, axe, auth (auth is a placeholder, ignored).
 
 Exit codes: 0 ok, 1 findings at or above --fail-on, 2 usage or runtime error.
 `;
