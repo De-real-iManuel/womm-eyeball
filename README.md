@@ -49,10 +49,10 @@ Severity: **Critical** (unusable), **High** (a user cannot finish a task, or a s
 ## Requirements
 
 - Node 20 or newer.
-- A Chromium build installed through Playwright (`npx playwright install chromium`, a download).
+- A Chromium build installed through Playwright (`npx playwright install chromium`), or an existing browser reachable through a Chrome DevTools Protocol (CDP) endpoint.
 - Enough free memory for a headless browser plus your dev server. A full test run was slow on a machine with under 1 GB free.
 - A running app reachable over plain `http://`, or a plain HTML folder.
-- Tested on Windows with Node 25 and Playwright 1.65.1. macOS and Linux are untested.
+- Tested on Windows with Node 25 and Playwright 1.65.1. macOS and Linux are untested. Android terminal environments cannot be assumed to support Playwright bundled Chromium; use remote CDP mode.
 
 ## Install
 
@@ -77,7 +77,7 @@ npx playwright install chromium
 node bin/eyeball.js --help
 ```
 
-Chromium is not downloaded by the install: run `npx playwright install chromium` once.
+Chromium is not downloaded by the install: run `npx playwright install chromium` once on a supported machine. If your environment cannot launch Playwright Chromium, connect an existing browser using CDP mode below.
 
 The npm package uses your personal npm scope because the unscoped package name is already taken. The plural `eyeballs` command is the recommended CLI; `eyeball` remains available as a compatibility alias. The old path `bin/frontend-audit.js` still works.
 
@@ -106,6 +106,7 @@ Output goes to `./frontend-audit-report/` (the default folder name has not been 
 |---|---|
 | `--config <file>` | Config file. Default: `eyeball.config.json` in `--root`, if present |
 | `--url` | Running app. Omit for plain HTML. |
+| `--cdp <endpoint>` | Connect to an existing Chromium browser through its CDP endpoint. Also accepts `EYEBALL_CDP_URL`. |
 | `--root` | Project folder, used to detect the framework and find routes. Default `.` |
 | `--framework` | `auto` (default), `next`, `sveltekit`, `nuxt`, `angular`, `vite`, `static`, `unknown` |
 | `--routes /a,/b` | Audit only these routes (needed for dynamic routes such as `/blog/hello`) |
@@ -142,6 +143,19 @@ Exit codes: 0 ok, 1 findings at or above `--fail-on`, 2 usage or runtime error.
 ```
 
 Defaults: viewports mobile 390x844, tablet 820x1180, desktop 1440x900. `auth` is a documented placeholder: any value is accepted and ignored. Logged-in pages cannot be audited yet.
+
+### Remote browser (CDP)
+
+Eyeball can connect to an existing Chromium browser instead of launching its bundled browser:
+
+```bash
+eyeballs --url https://your-reachable-preview.example --cdp http://127.0.0.1:9222
+# Or set EYEBALL_CDP_URL and omit --cdp.
+```
+
+The CDP endpoint must be reachable from the machine running Eyeball. The connected browser must also be able to reach the target `--url`.
+
+**Important for Android phones:** a remote browser cannot open `http://localhost:8158` on your phone. In a remote browser, `localhost` means the remote browser machine. To inspect a dev server running on your phone, expose port 8158 through a temporary tunnel, then pass the tunnel HTTPS URL to `--url`. Treat tunnel URLs as public: use test data only, avoid exposing private pages, and stop the tunnel when finished. Eyeball does not create or manage tunnels.
 
 ## Read the report
 
